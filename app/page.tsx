@@ -30,20 +30,20 @@ const colorSets = [
       "#000000"
     ]
   },
-  {
-    background: "#10005f",
-    particles: [
-      "#2445ff",
-      "#005b7b"
-    ]
-  },
-  {
-    background: "#ff0000",
-    particles: [
-      "#2445ff",
-      "#005b7b"
-    ]
-  }
+  // {
+  //   background: "#10005f",
+  //   particles: [
+  //     "#2445ff",
+  //     "#005b7b"
+  //   ]
+  // },
+  // {
+  //   background: "#ff0000",
+  //   particles: [
+  //     "#2445ff",
+  //     "#005b7b"
+  //   ]
+  // }
 ]
 
 
@@ -99,9 +99,45 @@ const [container, setContainer] = useState<Container>();
             "value": colorSet.background,
           }
         },
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push"
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse"
+            },
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              duration: 2,
+              opacity: 0.8,
+              size: 40
+            },
+            push: {
+              quantity: 3
+            },
+            repulse: {
+              distance: 100,
+              duration: 3
+            }
+          }
+        },
+
         "particles": {
           "color": {
             "value": colorSet.particles,
+          },
+
+          links: {
+            color: "#3a3a3a",
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1
           },
           "move": {
             "direction": "bottom",
