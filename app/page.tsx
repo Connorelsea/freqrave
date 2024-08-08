@@ -24,7 +24,7 @@ const cuteFont = Cute_Font({
 
 const colorSets = [
   {
-    background: "#101010",
+    background: "#1d1d1d",
     particles: [
       "#8ace00",
       "#000000"
@@ -133,7 +133,7 @@ const [container, setContainer] = useState<Container>();
           },
 
           links: {
-            color: "#3a3a3a",
+            color: "#8f8f8f",
             distance: 150,
             enable: true,
             opacity: 0.5,
