@@ -7,6 +7,18 @@
   min-height: 100vh;
 }
 
+.upcomingShowArea {
+  z-index: 9999;
+  position: absolute;
+  top: 30%;
+  left: 30px;
+  color: #8ace00;
+  font-size:2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
 .description {
   display: inherit;
   justify-content: inherit;
