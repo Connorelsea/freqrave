@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 
 import { Cute_Font } from 'next/font/google'
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import {
   type Container,
@@ -22,8 +22,37 @@ const cuteFont = Cute_Font({
   subsets: ['latin'],
 })
 
+const colorSets = [
+  {
+    background: "#101010",
+    particles: [
+      "#8ace00",
+      "#000000"
+    ]
+  },
+  {
+    background: "#10005f",
+    particles: [
+      "#2445ff",
+      "#005b7b"
+    ]
+  },
+  {
+    background: "#ff0000",
+    particles: [
+      "#2445ff",
+      "#005b7b"
+    ]
+  }
+]
+
+
+
 const App = () => {
   const [init, setInit] = useState(false);
+const [colorSet, setColorSet] = useState(colorSets[0]);
+const [container, setContainer] = useState<Container>();
+
 
   // this should be run only once per application lifetime
   useEffect(() => {
@@ -41,25 +70,38 @@ const App = () => {
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
+    // setContainer(container);
   };
 
+  function getRandomInt(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
+  const changeColorSet = useCallback(() => {
+    console.log("change color set");
+    setColorSet(colorSets[getRandomInt(0, colorSets.length - 1)]);
+  }, []);
+
   const options: ISourceOptions = useMemo(
-    () => ({
+    () => {
+      
+      
+      return (
+      {
         "fullScreen": {
           "zIndex": 1
         },
         "background": {
-          color: {
-            value: "#101010",
+          "color": {
+            "value": colorSet.background,
           }
         },
         "particles": {
           "color": {
-            "value": [
-              "#8ace00",
-              "#000000"
-            ]
+            "value": colorSet.particles,
           },
           "move": {
             "direction": "bottom",
@@ -188,18 +230,18 @@ const App = () => {
           }
       },
       detectRetina: true,
-    }),
+    })},
     [],
   );
 
   if (init) {
     return (
-      <>
+      <div onClick={() => changeColorSet()} style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 1000 }}>
       <div className={styles.upcomingShowArea}>
         <span className={cuteFont.className}>upcoming shows</span>
         <span className={cuteFont.className}>8/24 - nola - pajama rave</span>
         <span className={cuteFont.className}>9/7 - br - mid city ballroom</span>
-        <span className={cuteFont.className}>10/5 - br - mid city ballroom</span>
+        <span className={cuteFont.className}>10/4 - br - mid city ballroom</span>
 
       </div>
       <Particles
@@ -207,7 +249,7 @@ const App = () => {
         particlesLoaded={particlesLoaded}
         options={options}
       />
-      </>
+      </div>
     );
   }
 
