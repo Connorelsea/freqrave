@@ -275,9 +275,9 @@ const [container, setContainer] = useState<Container>();
       <div onClick={() => changeColorSet()} style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 1000 }}>
       <div className={styles.upcomingShowArea}>
         <span className={cuteFont.className}>upcoming shows</span>
-        <span className={cuteFont.className}>8/24 - nola - pajama rave</span>
-        <span className={cuteFont.className}>9/7 - br - mid city ballroom</span>
-        <span className={cuteFont.className}>10/4 - br - mid city ballroom</span>
+        <span className={cuteFont.className}>9/19 - br - mid city ballroom/span>
+        <span className={cuteFont.className}>11/8 - br - mid city ballroom</span>
+        <span className={cuteFont.className}>12/6 - br - mid city ballroom</span>
 
       </div>
       <Particles
